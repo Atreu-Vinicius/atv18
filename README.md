@@ -1,39 +1,46 @@
-O objetivo dessa atividade é praticar o uso do hook useState em React para gerenciar o estado em componentes funcionais. Em três exercícios, criamos componentes para implementar funcionalidades como contadores, alternância de estados de texto e gerenciamento de listas de tarefas. A seguir, temos a documentação detalhada de cada exercício com a explicação dos blocos de código.
+O objetivo desse exercício é criar um componente funcional que renderize um campo de entrada de texto e um botão. Quando o botão for clicado, o campo de entrada deve automaticamente receber o foco, permitindo que o usuário possa começar a digitar sem ter que clicar no campo manualmente.
 
-Exercício 1: Contador Simples com useState
-Componente: Contador
+Explicação do funcionamento:
+Referência ao elemento de entrada: Utilizamos o hook useRef para criar uma referência ao campo de entrada (input). A referência permite que possamos acessar diretamente o elemento do DOM e manipular suas propriedades ou métodos.
 
-Explicação do Componente:
-O componente Contador exibe um número que começa em 0. Ele possui dois botões: um para incrementar (+1) e outro para decrementar (-1). O hook useState é utilizado para controlar o estado do número exibido.
+Foco no campo de entrada: Dentro de uma função, utilizamos o método focus() para colocar o foco no campo de entrada. Esse método é nativo do JavaScript e pode ser chamado diretamente em um elemento HTML, permitindo que ele ganhe o foco de interação.
 
-Explicação dos Blocos de Código:
-useState(0): Este hook inicializa o estado contador com o valor 0. O primeiro valor retornado pela função useState é o estado atual, e o segundo valor é a função que pode ser usada para atualizá-lo.
-Função incrementar: Quando o botão de incremento é clicado, a função setContador é chamada para adicionar 1 ao valor atual do contador.
-Função decrementar: Quando o botão de decremento é clicado, a função setContador é chamada para subtrair 1 do valor atual, mas apenas se o valor for maior que 0, para evitar que o número fique negativo.
-Exercício 2: Alterando o Texto de um Botão
-Componente: BotaoAlternador
+Botão para ativar o foco: Quando o botão é clicado, ele chama a função responsável por colocar o foco no input, fazendo com que o campo se torne ativo e o usuário possa começar a digitar imediatamente.
 
-Explicação do Componente:
-O componente BotaoAlternador exibe um botão que alterna entre os textos "Ligado" e "Desligado". Utilizamos o hook useState para controlar o texto exibido, que alterna cada vez que o botão é clicado. O desafio extra inclui a estilização do botão com cores diferentes para cada estado.
+Componente:
+Esse componente pode ser utilizado em diversas situações onde você deseja que um campo de entrada receba foco automaticamente após uma ação do usuário (como clicar em um botão), facilitando a interação com o formulário.
 
-Explicação dos Blocos de Código:
-useState("Desligado"): Este hook inicializa o estado estado com o texto "Desligado".
-Função alternarEstado: Cada vez que o botão é clicado, a função setEstado é chamada, alternando o valor do estado entre "Ligado" e "Desligado". Se o estado for "Ligado", ele muda para "Desligado", e vice-versa.
-Classe CSS Dinâmica: A classe do botão é alterada dinamicamente com base no estado, usando a expressão className={estado === "Ligado" ? "ligado" : "desligado"}. Isso aplica diferentes estilos (cores) ao botão dependendo de seu estado.
-CSS: O arquivo de estilo CSS define o fundo do botão como verde quando o estado é "Ligado" e vermelho quando é "Desligado", além de outros estilos de formatação.
-Exercício 3: Gerenciando uma Lista de Tarefas
-Componente: ListaDeTarefas
+Exercício 2: Controlando um Cronômetro
+Objetivo:
+O objetivo desse exercício é criar um cronômetro simples que conta os segundos e oferece botões para iniciar, pausar e resetar o cronômetro. O controle é feito utilizando o hook useRef para armazenar a referência do intervalo que atualiza o contador de segundos.
 
-Explicação do Componente:
-O componente ListaDeTarefas permite adicionar tarefas a uma lista, gerenciar o estado do valor digitado no campo de texto e a lista de tarefas. O desafio extra consiste em permitir a remoção de tarefas ao clicar nelas.
+Explicação do funcionamento:
+Contagem de segundos: Usamos o hook useState para armazenar o valor do contador de segundos. Toda vez que o cronômetro é iniciado, o contador é incrementado a cada segundo.
 
-Explicação dos Blocos de Código:
-useState(''): O primeiro hook useState inicializa o estado do campo de texto tarefa com uma string vazia, ou seja, o campo começa vazio.
-useState([]): O segundo hook useState inicializa o estado da lista de tarefas tarefas com um array vazio. Este estado será atualizado conforme o usuário adicionar ou remover tarefas.
-Função adicionarTarefa: Quando o botão "Adicionar" é clicado, a função setTarefas é chamada para adicionar a nova tarefa ao array de tarefas. Se o campo de texto não estiver vazio, o valor da tarefa é adicionado à lista e o campo de texto é limpo.
-Função removerTarefa: Quando uma tarefa da lista é clicada, a função removerTarefa é chamada para remover a tarefa da lista. Isso é feito filtrando a tarefa clicada e atualizando o estado da lista.
-Renderização da Lista de Tarefas: A lista de tarefas é renderizada com o método map, onde cada item da lista é exibido dentro de um elemento li. O evento onClick é associado a cada item para que a tarefa seja removida ao ser clicada.
-Desafio Extra:
-Exercício 1: No contador, a validação foi adicionada para impedir que o número fique negativo, restringindo a decretação apenas quando o valor for maior que 0.
-Exercício 2: Foi incluída uma estilização para o botão, onde ele muda de cor dependendo do estado, com "Ligado" sendo exibido em verde e "Desligado" em vermelho.
-Exercício 3: A funcionalidade de remoção de tarefas foi implementada. Agora, ao clicar em uma tarefa na lista, ela é removida da lista de tarefas.
+setInterval e clearInterval: Para fazer a contagem dos segundos, utilizamos a função setInterval, que executa uma ação repetidamente a cada intervalo de tempo (1 segundo, por exemplo). Para parar a contagem, usamos a função clearInterval para limpar o intervalo.
+
+Referência ao setInterval: Usamos o useRef para armazenar a referência ao intervalo, garantindo que possamos parar ou limpar o intervalo corretamente ao pausar ou resetar o cronômetro.
+
+Controles de iniciar, pausar e resetar:
+
+Iniciar: Quando o botão de iniciar é clicado, o cronômetro começa a contar.
+Pausar: Ao pausar, o intervalo de contagem é limpo e a contagem é interrompida.
+Resetar: O cronômetro volta a zero e o intervalo é limpo.
+Componente:
+Esse componente é útil em situações onde você precisa de um cronômetro básico, como em jogos, temporizadores, ou monitoramento de tempo.
+
+Exercício 3: Contexto de Tema (Claro e Escuro)
+Objetivo:
+Neste exercício, o objetivo é criar um contexto que gerencie o tema da aplicação (claro ou escuro). Você terá dois componentes: um que exibe o tema atual e outro que permite alternar entre os temas.
+
+Explicação do funcionamento:
+Criação do contexto: Usamos o createContext para criar um contexto global que armazena o estado do tema. O contexto permite que diferentes componentes compartilhem esse estado sem a necessidade de passá-lo explicitamente como props.
+
+Gerenciamento do tema: Usamos o useState dentro de um provedor de contexto (TemaProvider) para controlar o estado do tema. Esse estado pode ser alternado entre "claro" e "escuro".
+
+Alterando o tema: Um dos componentes permite alternar entre os temas. Quando o usuário clica no botão para alternar, a função de alternância altera o estado do tema, e todos os componentes que consomem esse contexto são atualizados automaticamente.
+
+Acesso ao contexto com useContext: Dentro dos componentes que precisam acessar o tema, usamos o useContext para consumir o contexto. Dessa forma, os componentes podem exibir o tema atual ou modificar o estado do tema, conforme necessário.
+
+Componente:
+Esse componente pode ser útil em qualquer aplicação que deseje fornecer a funcionalidade de alternância entre modos de tema (claro/escuro). Ele centraliza o gerenciamento do estado do tema, o que facilita a manutenção e alteração de tema na aplicação.
